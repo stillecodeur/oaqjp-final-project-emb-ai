@@ -9,9 +9,14 @@ def emo_detector():
 
     response=emotion_detector(text_to_analyze)
 
-    return '''For the given statement, the system response is 
-    'anger': {}, 'disgust': {}, 'fear': {}, 'joy': {} and 'sadness': {}. The dominant emotion is {}.
-    '''.format(response["anger"],response["disgust"],response["fear"],response["joy"],response["sadness"],response["dominant_emotion"])
+    if response["dominant_emotion"] is None:
+        return "Invalid text! Please try again!"
+    else:
+        return '''For the given statement, the system response is 
+                'anger': {}, 'disgust': {}, 'fear': {}, 'joy': {} and 'sadness': {}. The dominant emotion is {}.
+                '''.format(response["anger"],response["disgust"],response["fear"],response["joy"],response["sadness"],response["dominant_emotion"])
+
+    
 
 
 @app.route("/")
